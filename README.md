@@ -1,2 +1,3 @@
-# minag-app
+#  MINAG Mayorista Application
+
 SISTEMA DE ABASTECIMIENTO Y PRECIOS
