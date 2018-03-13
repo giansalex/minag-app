@@ -1,9 +1,13 @@
 var express = require('express');
+var homeRoutes = require('./home');
+
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+/** GET /health-check - Check service health */
+router.get('/health-check', function (req, res) {
+  res.send('OK')
 });
+
+homeRoutes(router);
 
 module.exports = router;
