@@ -11,3 +11,16 @@ exports.list = function ($) {
 
     return mercados;
 };
+
+exports.getVariables = function ($) {
+    const variables = [];
+    $('#variables').find('option').each(function () {
+        const item = $(this);
+        variables.push({
+            id: item.val(),
+            value: item.text()
+        });
+    });
+
+    return variables;
+};
