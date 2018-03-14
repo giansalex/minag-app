@@ -38,4 +38,13 @@ describe('WebPage', function() {
                 console.log(data);
             });
     });
+
+    it('carga resultados segun el filtro', function () {
+        return loader.getFilterPage('')
+            .then(function (response) {
+                const data = response.data;
+                assert.ok(data);
+                console.log(data);
+            });
+    });
 });

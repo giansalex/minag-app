@@ -23,9 +23,9 @@ exports.getProductsByGeneroPage = function (genero) {
 exports.getFilterPage = function (filter) {
     const params = getFromFilter(filter);
 
-    return axios.post(URL_FILTER, params);
+    return axios.post(URL_FILTER, params, {responseEncoding: 'iso-8859-1'});
 };
 
 function getFromFilter(filter) {
-    return '&mercado=*&&variables[]=precio_prom&&fecha=13/03/2018&desde=01/03/2018&hasta=13/03/2018&&anios[]=2018&&meses[]=03&&semanas[]=11&&productos[]=1001&productos[]=0202&productos[]=0207&productos[]=0401&productos[]=0301&&periodicidad=intervalo&&&&&&&&&&&__ajax_carga_final=consulta&ajax=true';
+    return '&mercado=*&&variables[]=precio_max&variables[]=precio_prom&variables[]=precio_min&&fecha=14/03/2018&desde=01/03/2018&hasta=14/03/2018&&anios[]=2018&&meses[]=03&&semanas[]=11&&productos[]=1001&productos[]=0202&&periodicidad=dia&&&&&&&&&&&__ajax_carga_final=consulta&ajax=true\n';
 }
