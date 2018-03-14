@@ -37,3 +37,5 @@
 *.ez binary
 *.bz2 binary
 *.swp binary
+
+/tests export-ignore
