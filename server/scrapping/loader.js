@@ -27,5 +27,29 @@ exports.getFilterPage = function (filter) {
 };
 
 function getFromFilter(filter) {
-    return '&mercado=*&&variables[]=precio_max&variables[]=precio_prom&variables[]=precio_min&&fecha=14/03/2018&desde=01/03/2018&hasta=14/03/2018&&anios[]=2018&&meses[]=03&&semanas[]=11&&productos[]=1001&productos[]=0202&&periodicidad=dia&&&&&&&&&&&__ajax_carga_final=consulta&ajax=true\n';
+    var params = 'mercado=' + filter.mercado;
+    params += joinValues('variables[]', filter.variables);
+    params += joinValues('productos[]', filter.products);
+    params += joinValues('anios[]', filter.years);
+    params += joinValues('meses[]', filter.months);
+    params += joinValues('semanas[]', filter.weeks);
+    params += '&periodicidad=' + filter.period;
+    params += '&fecha=' + filter.fecha
+        + '&desde=' + filter.desde
+        + '&hasta=' + filter.hasta;
+    params += '&__ajax_carga_final=consulta&ajax=true';
+
+    return params;
+    // return '&mercado=*&&variables[]=precio_max&variables[]=precio_prom&variables[]=precio_min&&fecha=14/03/2018&desde=01/03/2018&hasta=14/03/2018&&anios[]=2018&&meses[]=03&&semanas[]=11&&productos[]=1001&productos[]=0202&&periodicidad=dia&&&&&&&&&&&__ajax_carga_final=consulta&ajax=true\n';
+}
+
+function joinValues(key, items) {
+    var params = '';
+    var max = items.length;
+
+    for (var i = 0; i < max; i++) {
+        params += '&' + key + '=' + items[i];
+    }
+
+    return params;
 }
