@@ -13,7 +13,7 @@ describe('WebPage', function() {
     });
 
     it('carga productos de todos los mercados', function () {
-        return loader.getProductsPage('*')
+        return loader.getProductsByMercadoPage('*')
             .then(function (response) {
                 const data = response.data;
                 assert.ok(data);
@@ -22,7 +22,16 @@ describe('WebPage', function() {
     });
 
     it('carga productos de Mcdo mayorista cereales, leguminosas y oleaginosas', function () {
-        return loader.getProductsPage('15011506')
+        return loader.getProductsByMercadoPage('15011506')
+            .then(function (response) {
+                const data = response.data;
+                assert.ok(data);
+                console.log(data);
+            });
+    });
+
+    it('carga productos segun el genero', function () {
+        return loader.getProductsByGeneroPage('1001')
             .then(function (response) {
                 const data = response.data;
                 assert.ok(data);
