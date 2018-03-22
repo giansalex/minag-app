@@ -62,8 +62,7 @@ function getOptions() {
             // var buff = new Buffer(data, 'utf-8');
             // return iconv.decode(buff, 'iso-8859-1');
 
-            return data;
-            // return iconv.decode(data, 'iso-8859-1');
+            return iconv.decode(data, 'iso-8859-1');
         }]
     }
 }
