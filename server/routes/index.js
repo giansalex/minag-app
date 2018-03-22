@@ -1,5 +1,6 @@
 var express = require('express');
 var homeRoutes = require('./home');
+var mercadoRoutes = require('./mercado');
 
 var router = express.Router();
 
@@ -9,5 +10,6 @@ router.get('/health-check', function (req, res) {
 });
 
 homeRoutes(router);
+mercadoRoutes(router);
 
 module.exports = router;
