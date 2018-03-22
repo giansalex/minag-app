@@ -25,7 +25,7 @@ exports.getProductsByGeneroPage = function (genero) {
 exports.getFilterPage = function (filter) {
     const params = getFromFilter(filter);
 
-    return axios.post(URL_FILTER, params, { responseEncoding: 'iso-8859-1'});
+    return axios.post(URL_FILTER, params, getOptions());
 };
 
 function getFromFilter(filter) {
@@ -59,7 +59,11 @@ function joinValues(key, items) {
 function getOptions() {
     return {
         transformResponse: [function (data) {
-            return iconv.decode(data, 'iso-8859-1');
+            // var buff = new Buffer(data, 'utf-8');
+            // return iconv.decode(buff, 'iso-8859-1');
+
+            return data;
+            // return iconv.decode(data, 'iso-8859-1');
         }]
     }
 }
