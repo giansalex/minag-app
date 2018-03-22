@@ -1,5 +1,7 @@
 var express = require('express');
 var homeRoutes = require('./home');
+var mercadoRoutes = require('./mercado');
+var minagRoutes = require('./minag');
 
 var router = express.Router();
 
@@ -9,5 +11,7 @@ router.get('/health-check', function (req, res) {
 });
 
 homeRoutes(router);
+mercadoRoutes(router);
+minagRoutes(router);
 
 module.exports = router;

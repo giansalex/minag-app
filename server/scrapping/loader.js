@@ -1,4 +1,6 @@
 var axios = require('axios');
+var iconv = require('iconv-lite');
+
 const URL_MINAG = 'http://sistemas.minag.gob.pe/sisap/portal2/mayorista/';
 const URL_MERCADO = 'http://sistemas.minag.gob.pe/sisap/portal2/mayorista/generos/filtrarPorMercado';
 const URL_GENERO = 'http://sistemas.minag.gob.pe/sisap/portal2/mayorista/variedades/filtrarPorGenero';
@@ -11,7 +13,7 @@ exports.getIndexPage = function () {
 exports.getProductsByMercadoPage = function (mercado) {
     var params = 'mercado=' + mercado +'&&ajax=true';
 
-    return axios.post(URL_MERCADO, params);
+    return axios.post(URL_MERCADO, params, getOptions());
 };
 
 exports.getProductsByGeneroPage = function (genero) {
@@ -23,7 +25,7 @@ exports.getProductsByGeneroPage = function (genero) {
 exports.getFilterPage = function (filter) {
     const params = getFromFilter(filter);
 
-    return axios.post(URL_FILTER, params, {responseEncoding: 'iso-8859-1'});
+    return axios.post(URL_FILTER, params, getOptions());
 };
 
 function getFromFilter(filter) {
@@ -52,4 +54,16 @@ function joinValues(key, items) {
     }
 
     return params;
+}
+
+function getOptions() {
+    return {
+        transformResponse: [function (data) {
+            // var buff = new Buffer(data, 'utf-8');
+            // return iconv.decode(buff, 'iso-8859-1');
+
+            return data;
+            // return iconv.decode(data, 'iso-8859-1');
+        }]
+    }
 }
